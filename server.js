@@ -69,7 +69,7 @@ app.post('/api/chat', async (req, res) => {
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-haiku-4-5-20251001',
         max_tokens: 1000,
         system: SYSTEM_PROMPT,
         messages: messages.slice(-10) // keep last 10 messages to limit token usage
@@ -85,7 +85,7 @@ app.post('/api/chat', async (req, res) => {
     res.json({ reply: data.content[0].text });
 
   } catch (err) {
-    console.error(err);
+    console.error('Anthropic API error:', JSON.stringify(err));
     res.status(500).json({ error: 'Server error. Please try again.' });
   }
 });
